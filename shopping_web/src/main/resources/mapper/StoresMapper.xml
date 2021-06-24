@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StoresMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Stores">
+    <id column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="store_phone" jdbcType="VARCHAR" property="storePhone" />
+    <result column="store_bank" jdbcType="VARCHAR" property="storeBank" />
+    <result column="store_card_jpg" jdbcType="VARCHAR" property="storeCardJpg" />
+    <result column="store_manage_jpg" jdbcType="VARCHAR" property="storeManageJpg" />
+    <result column="store_ban" jdbcType="VARCHAR" property="storeBan" />
+    <result column="store_level" jdbcType="INTEGER" property="storeLevel" />
+    <result column="store_pwd" jdbcType="VARCHAR" property="storePwd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    store_id, store_name, store_phone, store_bank, store_card_jpg, store_manage_jpg,
+    store_ban, store_level, store_pwd
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from table_stores
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_stores
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Stores">
+    insert into table_stores (store_id, store_name, store_phone,
+      store_bank, store_card_jpg, store_manage_jpg,
+      store_ban, store_level, store_pwd
+      )
+    values (#{storeId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, #{storePhone,jdbcType=VARCHAR},
+      #{storeBank,jdbcType=VARCHAR}, #{storeCardJpg,jdbcType=VARCHAR}, #{storeManageJpg,jdbcType=VARCHAR},
+      #{storeBan,jdbcType=VARCHAR}, #{storeLevel,jdbcType=INTEGER}, #{storePwd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Stores">
+    insert into table_stores
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="storePhone != null">
+        store_phone,
+      </if>
+      <if test="storeBank != null">
+        store_bank,
+      </if>
+      <if test="storeCardJpg != null">
+        store_card_jpg,
+      </if>
+      <if test="storeManageJpg != null">
+        store_manage_jpg,
+      </if>
+      <if test="storeBan != null">
+        store_ban,
+      </if>
+      <if test="storeLevel != null">
+        store_level,
+      </if>
+      <if test="storePwd != null">
+        store_pwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null">
+        #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBank != null">
+        #{storeBank,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCardJpg != null">
+        #{storeCardJpg,jdbcType=VARCHAR},
+      </if>
+      <if test="storeManageJpg != null">
+        #{storeManageJpg,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBan != null">
+        #{storeBan,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLevel != null">
+        #{storeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="storePwd != null">
+        #{storePwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Stores">
+    update table_stores
+    <set>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null">
+        store_phone = #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBank != null">
+        store_bank = #{storeBank,jdbcType=VARCHAR},
+      </if>
+      <if test="storeCardJpg != null">
+        store_card_jpg = #{storeCardJpg,jdbcType=VARCHAR},
+      </if>
+      <if test="storeManageJpg != null">
+        store_manage_jpg = #{storeManageJpg,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBan != null">
+        store_ban = #{storeBan,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLevel != null">
+        store_level = #{storeLevel,jdbcType=INTEGER},
+      </if>
+      <if test="storePwd != null">
+        store_pwd = #{storePwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Stores">
+    update table_stores
+    set store_name = #{storeName,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR},
+      store_bank = #{storeBank,jdbcType=VARCHAR},
+      store_card_jpg = #{storeCardJpg,jdbcType=VARCHAR},
+      store_manage_jpg = #{storeManageJpg,jdbcType=VARCHAR},
+      store_ban = #{storeBan,jdbcType=VARCHAR},
+      store_level = #{storeLevel,jdbcType=INTEGER},
+      store_pwd = #{storePwd,jdbcType=VARCHAR}
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+
+
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    *
+    from table_stores
+    where store_name = #{storeName,jdbcType=VARCHAR}
+  </select>
+  <select id="storeCount" resultType="java.lang.Integer">
+    select
+    count( * )
+    from table_stores
+    where store_ban = '1'
+  </select>
+
+  <select id="selectidMAX" resultType="java.lang.Integer">
+    select MAX(store_id) from table_stores
+  </select>
+
+  <select id="getAllStore" resultMap="BaseResultMap">
+    select
+      *
+    from table_stores
+  </select>
+  <select id="getAllStoreBan" resultMap="BaseResultMap">
+    select
+      *
+    from table_stores
+    where store_Ban = 0
+  </select>
+  <update id="BanStore" parameterType="com.example.demo.entity.Stores">
+    update table_stores
+    set
+        store_ban = #{storeBan,jdbcType=VARCHAR}
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+</mapper>

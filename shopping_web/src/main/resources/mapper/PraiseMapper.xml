@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.PraiseMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Praise">
+    <id column="praise_id" jdbcType="INTEGER" property="praiseId" />
+    <result column="praise_user_name" jdbcType="VARCHAR" property="praiseUserName" />
+    <result column="praise_store_name" jdbcType="VARCHAR" property="praiseStoreName" />
+    <result column="praise_info" jdbcType="VARCHAR" property="praiseInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    praise_id, praise_user_name, praise_store_name, praise_info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from table_praise
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_praise
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Praise">
+    insert into table_praise (praise_id, praise_user_name, praise_store_name,
+      praise_info)
+    values (#{praiseId,jdbcType=INTEGER}, #{praiseUserName,jdbcType=VARCHAR}, #{praiseStoreName,jdbcType=VARCHAR},
+      #{praiseInfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Praise">
+    insert into table_praise
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="praiseId != null">
+        praise_id,
+      </if>
+      <if test="praiseUserName != null">
+        praise_user_name,
+      </if>
+      <if test="praiseStoreName != null">
+        praise_store_name,
+      </if>
+      <if test="praiseInfo != null">
+        praise_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="praiseId != null">
+        #{praiseId,jdbcType=INTEGER},
+      </if>
+      <if test="praiseUserName != null">
+        #{praiseUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseStoreName != null">
+        #{praiseStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseInfo != null">
+        #{praiseInfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Praise">
+    update table_praise
+    <set>
+      <if test="praiseUserName != null">
+        praise_user_name = #{praiseUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseStoreName != null">
+        praise_store_name = #{praiseStoreName,jdbcType=VARCHAR},
+      </if>
+      <if test="praiseInfo != null">
+        praise_info = #{praiseInfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Praise">
+    update table_praise
+    set praise_user_name = #{praiseUserName,jdbcType=VARCHAR},
+      praise_store_name = #{praiseStoreName,jdbcType=VARCHAR},
+      praise_info = #{praiseInfo,jdbcType=VARCHAR}
+    where praise_id = #{praiseId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="count">
+    select count (*) from table_praise
+  </select>
+</mapper>

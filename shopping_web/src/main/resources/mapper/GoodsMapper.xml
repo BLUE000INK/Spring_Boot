@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.entity.Goods">
+    <id column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_storename" jdbcType="VARCHAR" property="goodsStorename" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_type" jdbcType="VARCHAR" property="goodsType" />
+    <result column="goods_price" jdbcType="VARCHAR" property="goodsPrice" />
+    <result column="goods_size" jdbcType="VARCHAR" property="goodsSize" />
+    <result column="goods_jpg" jdbcType="VARCHAR" property="goodsJpg" />
+    <result column="goods_bargin" jdbcType="INTEGER" property="goodsBargin" />
+    <result column="goods_number" jdbcType="INTEGER" property="goodsNumber" />
+    <result column="goods_new" jdbcType="INTEGER" property="goodsNew" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, goods_storename, goods_name, goods_type, goods_price, goods_size, goods_jpg,
+    goods_bargin, goods_number, goods_new
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from table_goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from table_goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.demo.entity.Goods">
+    insert into table_goods (goods_id, goods_storename, goods_name,
+      goods_type, goods_price, goods_size,
+      goods_jpg, goods_bargin, goods_number,
+      goods_new)
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsStorename,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR},
+      #{goodsType,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=VARCHAR}, #{goodsSize,jdbcType=VARCHAR},
+      #{goodsJpg,jdbcType=VARCHAR}, #{goodsBargin,jdbcType=INTEGER}, #{goodsNumber,jdbcType=INTEGER},
+      #{goodsNew,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.entity.Goods">
+    insert into table_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsStorename != null">
+        goods_storename,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsType != null">
+        goods_type,
+      </if>
+      <if test="goodsPrice != null">
+        goods_price,
+      </if>
+      <if test="goodsSize != null">
+        goods_size,
+      </if>
+      <if test="goodsJpg != null">
+        goods_jpg,
+      </if>
+      <if test="goodsBargin != null">
+        goods_bargin,
+      </if>
+      <if test="goodsNumber != null">
+        goods_number,
+      </if>
+      <if test="goodsNew != null">
+        goods_new,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsStorename != null">
+        #{goodsStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSize != null">
+        #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsJpg != null">
+        #{goodsJpg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBargin != null">
+        #{goodsBargin,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNumber != null">
+        #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNew != null">
+        #{goodsNew,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.demo.entity.Goods">
+    update table_goods
+    <set>
+      <if test="goodsStorename != null">
+        goods_storename = #{goodsStorename,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSize != null">
+        goods_size = #{goodsSize,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsJpg != null">
+        goods_jpg = #{goodsJpg,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBargin != null">
+        goods_bargin = #{goodsBargin,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNumber != null">
+        goods_number = #{goodsNumber,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNew != null">
+        goods_new = #{goodsNew,jdbcType=INTEGER},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.demo.entity.Goods">
+    update table_goods
+    set
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_type = #{goodsType,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=VARCHAR},
+      goods_size = #{goodsSize,jdbcType=VARCHAR},
+      goods_bargin = #{goodsBargin,jdbcType=INTEGER},
+      goods_number = #{goodsNumber,jdbcType=INTEGER},
+      goods_new = #{goodsNew,jdbcType=INTEGER}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="getAllgoods" resultMap="BaseResultMap">
+    select
+    *
+    from table_goods
+    where goods_storename = #{goodsStorename,jdbcType=VARCHAR}
+  </select>
+  <select id="selectidMAX" resultType="java.lang.Integer">
+    select MAX(goods_id) from table_goods
+  </select>
+
+  <update id="buegoods" parameterType="com.example.demo.entity.Goods">
+    update table_goods
+    set
+      goods_number = #{goodsNumber,jdbcType=INTEGER}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </update>
+</mapper>
